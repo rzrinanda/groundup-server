@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -14,11 +15,13 @@ import { MachineModule } from './domain/machine/machine.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     // MongooseModule.forRoot(process.env.API, { dbName: 'groundup_db' }),
     // MongooseModule.forRoot('mongodb://localhost:27017/studentdb'),
     // MongooseModule.forFeature([{ name: 'Action', schema: 'ActionSchema' }]),
     // MongooseModule.forRoot('mongodb://localhost/groundup_db'),
-    MongooseModule.forRoot('mongodb+srv://rzrinanda:zulfik4r@cluster-groundup.e66deul.mongodb.net/groundup_db?retryWrites=true&w=majority'),
+    // MongooseModule.forRoot('mongodb+srv://rzrinanda:zulfik4r@cluster-groundup.e66deul.mongodb.net/groundup_db?retryWrites=true&w=majority'),
+    MongooseModule.forRoot(process.env.API_HOST + process.env.API_DB + process.env.API_OPTIONS),
     MongooseModule.forFeature([{ name: Action.name, schema: ActionSchema }]),
     // ActionModule,
     AnomalyModule,
