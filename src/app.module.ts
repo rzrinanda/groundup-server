@@ -18,7 +18,7 @@ import { MachineModule } from './domain/machine/machine.module';
     // MongooseModule.forRoot('mongodb://localhost:27017/studentdb'),
     // MongooseModule.forFeature([{ name: 'Action', schema: 'ActionSchema' }]),
     // MongooseModule.forRoot('mongodb://localhost/groundup_db'),
-    MongooseModule.forRoot('mongodb+srv://rzrinanda:zulfik%40r@cluster-groundup.e66deul.mongodb.net/?retryWrites=true&w=majority'),
+    MongooseModule.forRoot('mongodb+srv://rzrinanda:zulfik%40r@cluster-groundup.e66deul.mongodb.net/?retryWrites=true&w=majority', { dbName: 'groundup_db' }),
     MongooseModule.forFeature([{ name: Action.name, schema: ActionSchema }]),
     // ActionModule,
     AnomalyModule,
