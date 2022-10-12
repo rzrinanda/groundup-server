@@ -34,6 +34,7 @@ export class AnomalyService {
       const modAnomaly = await Promise.all(anomaly.map(async (r) => {
         const machine = await this.machineModel.findById(r.machine).exec();
         return {
+          _id: r._id,
           timestamp: r.timestamp,
           machine: r.machine,
           anomaly: r.anomalyName,

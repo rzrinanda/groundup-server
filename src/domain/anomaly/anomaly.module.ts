@@ -9,7 +9,7 @@ import { Machine, MachineSchema } from '../machine/entities/machine.entity';
 @Module({
   imports: [
     MachineModule,
-    MongooseModule.forRoot('mongodb://localhost/groundup_db'),
+    // MongooseModule.forRoot('mongodb://localhost/groundup_db'),
     MongooseModule.forFeature([
       { name: Anomaly.name, schema: AnomalySchema },
       { name: Machine.name, schema: MachineSchema },

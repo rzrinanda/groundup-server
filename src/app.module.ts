@@ -27,7 +27,7 @@ import { MachineModule } from './domain/machine/machine.module';
     AnomalyModule,
     AlertModule,
     ReasonModule,
-    SusreasonModule,
+    // SusreasonModule,
     MachineModule,
   ],
   controllers: [AppController, ActionController],

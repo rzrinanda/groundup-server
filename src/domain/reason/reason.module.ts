@@ -9,7 +9,7 @@ import { Machine, MachineSchema } from '../machine/entities/machine.entity';
 @Module({
   imports: [
     MachineModule,
-    MongooseModule.forRoot('mongodb://localhost/groundup_db'),
+    // MongooseModule.forRoot('mongodb://localhost/groundup_db'),
     MongooseModule.forFeature([
       { name: Reason.name, schema: ReasonSchema },
       { name: Machine.name, schema: MachineSchema },
@@ -18,4 +18,4 @@ import { Machine, MachineSchema } from '../machine/entities/machine.entity';
   controllers: [ReasonController],
   providers: [ReasonService],
 })
-export class ReasonModule {}
+export class ReasonModule { }

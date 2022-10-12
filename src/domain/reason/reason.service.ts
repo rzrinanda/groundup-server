@@ -26,6 +26,7 @@ export class ReasonService {
       const modReason = await Promise.all(reason.map(async (r) => {
         const machine = await this.machineModel.findById(r.machine).exec();
         return {
+          _id: r._id,
           machine: r.machine,
           reason: r.reason,
           machineName: machine.machineName,
