@@ -52,6 +52,29 @@ export class AnomalyService {
     return anomalyData;
   }
 
+  async findByMachine(machineId: string): Promise<any[]> {
+    const anomalyData = await this.anomalyModel.find({ machine: machineId }).then(async (anomaly) => {
+      const modAnomaly = await Promise.all(anomaly.map(async (r) => {
+        const machine = await this.machineModel.findById(r.machine).exec();
+        return {
+          _id: r._id,
+          timestamp: r.timestamp,
+          machine: r.machine,
+          anomaly: r.anomalyName,
+          machineName: machine.machineName,
+          sensor: r.sensor,
+          soundClip: r.soundClip
+        };
+      }))
+      return modAnomaly;
+    })
+
+    if (!anomalyData || anomalyData.length == 0) {
+      throw new NotFoundException('Anomaly data not found!');
+    }
+    return anomalyData;
+  }
+
   async findOne(id: number): Promise<IAnomaly> {
     const existingAnomaly = await (await this.anomalyModel.findById(id)).populated('Machine').exec();
     if (!existingAnomaly) {

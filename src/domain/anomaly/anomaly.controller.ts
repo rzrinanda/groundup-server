@@ -1,11 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { AnomalyService } from './anomaly.service';
 import { CreateAnomalyDto } from './dto/create-anomaly.dto';
 import { UpdateAnomalyDto } from './dto/update-anomaly.dto';
 
 @Controller('anomaly')
 export class AnomalyController {
-  constructor(private readonly anomalyService: AnomalyService) {}
+  constructor(private readonly anomalyService: AnomalyService) { }
 
   @Post()
   create(@Body() createAnomalyDto: CreateAnomalyDto) {
@@ -15,6 +15,11 @@ export class AnomalyController {
   @Get()
   findAll() {
     return this.anomalyService.findAll();
+  }
+
+  @Get('machine')
+  findByMachine(@Query('m') machineId: string) {
+    return this.anomalyService.findByMachine(machineId);
   }
 
   @Get(':id')
